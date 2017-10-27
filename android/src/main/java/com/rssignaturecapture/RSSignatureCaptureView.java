@@ -36,6 +36,7 @@ public class RSSignatureCaptureView extends View {
 	private OnSignedListener mOnSignedListener;
 	private int mMinWidth;
 	private int mMaxWidth;
+	private int mFixedStrokeWidth;
 	private float mLastTouchX;
 	private float mLastTouchY;
 	private float mLastVelocity;
@@ -181,7 +182,7 @@ public class RSSignatureCaptureView extends View {
 			y += ttt * curve.endPoint.y;
 
 			// Set the incremental stroke width and draw.
-			mPaint.setStrokeWidth(startWidth + ttt * widthDelta);
+			mPaint.setStrokeWidth(mFixedStrokeWidth != 0 ? mFixedStrokeWidth : startWidth + ttt * widthDelta);
 			mSignatureBitmapCanvas.drawPoint(x, y, mPaint);
 			expandDirtyRect(x, y);
 		}
@@ -197,12 +198,8 @@ public class RSSignatureCaptureView extends View {
 		}
 	}
 
-	public void setMinStrokeWidth(int minStrokeWidth) {
- 		mMinWidth = minStrokeWidth;
- 	}
- 
- 	public void setMaxStrokeWidth(int maxStrokeWidth) {
- 		mMaxWidth = maxStrokeWidth;
+	public void setFixedStrokeWidth(int fixedStrokeWidth) {
+		mFixedStrokeWidth = fixedStrokeWidth;
  	}
 
 	private float strokeWidth(float velocity) {

@@ -21,8 +21,7 @@ public class RSSignatureCaptureViewManager extends ViewGroupManager<RSSignatureC
 	public static final String PROPS_VIEW_MODE = "viewMode";
 	public static final String PROPS_SHOW_NATIVE_BUTTONS="showNativeButtons";
 	public static final String PROPS_MAX_SIZE="maxSize";
- 	public static final String PROPS_MIN_STROKE_WIDTH="minStrokeWidth";
- 	public static final String PROPS_MAX_STROKE_WIDTH="maxStrokeWidth";
+ 	public static final String PROPS_FIXED_STROKE_WIDTH="fixedStrokeWidth";
 
 	public static final int COMMAND_SAVE_IMAGE = 1;
 	public static final int COMMAND_RESET_IMAGE = 2;
@@ -72,22 +71,13 @@ public class RSSignatureCaptureViewManager extends ViewGroupManager<RSSignatureC
 		}
 	}
 
-	@ReactProp(name = PROPS_MIN_STROKE_WIDTH)
- 	public void setPropsMinStrokeWidth(RSSignatureCaptureMainView view, @Nullable int minStrokeWidth) {
- 		Log.d("minStrokeWidth:",  ""+minStrokeWidth);
+	@ReactProp(name = PROPS_FIXED_STROKE_WIDTH)
+ 	public void setPropsFixedStrokeWidth(RSSignatureCaptureMainView view, @Nullable int fixedStrokeWidth) {
+ 		Log.d("fixedStrokeWidth:",  ""+fixedStrokeWidth);
  		if(view!=null){
- 			view.getSignatureView().setMinStrokeWidth(maxStrokeWidth);
+ 			view.getSignatureView().setFixedStrokeWidth(fixedStrokeWidth);
  		}
  	}
- 
- 	@ReactProp(name = PROPS_MAX_STROKE_WIDTH)
- 	public void setPropsMaxStrokeWidth(RSSignatureCaptureMainView view, @Nullable int maxStrokeWidth) {
- 		Log.d("maxStrokeWidth:",  ""+maxStrokeWidth);
- 		if(view!=null){
- 			view.getSignatureView().setMaxStrokeWidth(maxStrokeWidth);
- 		}
- 	}
-
 
 	@Override
 	public RSSignatureCaptureMainView createViewInstance(ThemedReactContext context) {
